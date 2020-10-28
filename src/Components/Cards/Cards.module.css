@@ -1,0 +1,20 @@
+.container {
+    margin: 50px 0;
+}
+
+.card{
+    margin : 0 2% !important;
+}
+
+.active{
+    border-bottom: 10px solid rgba(225,225,0,0.5);
+}
+.confirmed {
+    border-bottom: 10px solid rgba(0,0,255,0.5);
+}
+.recovered {
+    border-bottom: 10px solid rgba(0,225,0,0.5);
+}
+.deceased{
+    border-bottom: 10px solid rgba(255,0,0,0.5);
+}
