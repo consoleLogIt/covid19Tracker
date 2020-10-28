@@ -15,15 +15,16 @@ class App extends Component {
             data:fetchedData
         })
         // console.log(data);  
+
     }
 
     render() {
         const {data} = this.state;
         return (
-            <div >
+            <div className = {styles.container} >
                <Cards data = {data } />  
-               {/* <StatePicker />
-               <Chart /> */}
+               {/* {/* <StatePicker /> */}
+               <Chart /> 
             </div>
         );
     }

@@ -1,20 +1,25 @@
 .container {
     margin: 50px 0;
+    width: 80%;
 }
 
 .card{
-    margin : 0 2% !important;
+    margin : 0 1% !important;
 }
 
 .active{
-    border-bottom: 10px solid rgba(225,225,0,0.5);
+    border-bottom: 15px solid rgba(225,225,0,0.5);
+    /* background-color:rgba(255,255,0,0.5); */
 }
 .confirmed {
-    border-bottom: 10px solid rgba(0,0,255,0.5);
+    border-bottom: 15px solid rgba(0,0,255,0.5);
+    /* background:rgba(0,0,255,0.5) !important; */
 }
 .recovered {
-    border-bottom: 10px solid rgba(0,225,0,0.5);
+    border-bottom: 15px solid rgba(0,225,0,0.5);
+    /* background:rgba(0,225,0,0.5) !important; */
 }
 .deceased{
-    border-bottom: 10px solid rgba(255,0,0,0.5);
+    border-bottom: 15px solid rgba(255,0,0,0.5);
+    /* background:rgba(255,0,0,0.5) !important; */
 }
