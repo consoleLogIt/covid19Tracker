@@ -23,9 +23,8 @@ const url  = "https://api.covidindiatracker.com/"
 
 export const fetchDailyData = async () => {
     try{
-
         const {data:{cases_time_series}} =  await axios.get(`https://api.covid19india.org/data.json`);
-      const modifiedData = cases_time_series.map((dailyData)=>({
+        const modifiedData = cases_time_series.map((dailyData)=>({
         confirmed:dailyData.dailyconfirmed,
         deaths:dailyData.dailydeceased,
         recovored:dailyData.dailyrecovered,
@@ -40,6 +39,16 @@ export const fetchDailyData = async () => {
     }
 }
 
+export const fetchByState = async () => {
+    try{
+       const {data:{statewise}} = await axios.get(`https://api.covid19india.org/data.json`);
+       return statewise.map(({state})=>state);
+
+    }
+    catch(error){
+        console.log(error);
+    }
+}
 
 
 
