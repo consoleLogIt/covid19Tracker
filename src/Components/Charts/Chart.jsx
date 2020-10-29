@@ -17,7 +17,6 @@ function Chart({data:{confirmed,active,recovered,deaths},State}) {
        
     },[]);
 
-    console.log(confirmed,active,recovered,deaths);
     
     // const lineChart = (
     //     dailyData.length
@@ -121,7 +120,7 @@ options = {{
     
     return (
         <div className ={styles.container}>
-            {State?barChart:lineChart}  
+            {State&&State!="Total"?barChart:lineChart}  
         </div>
     );
 }

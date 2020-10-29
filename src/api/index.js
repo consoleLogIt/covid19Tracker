@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { act } from 'react-dom/test-utils';
+
 
 const url  = "https://api.covidindiatracker.com/"
 
@@ -37,11 +37,17 @@ export const fetchDailyData = async () => {
 }
 
 export const fetchByState = async (State) => {
-   
+
+  
     try{
        const {data:{statewise}} = await axios.get(`https://api.covid19india.org/data.json`);
 
      if(State){
+         if(State=="Total"){
+           return await fetchData();
+            
+         }
+        console.log("inside fetchByStateApi",State)
          const modifieddata = statewise.filter((state)=>{return state.state===State})
          
        const   {active, confirmed, recovered, deaths,
@@ -50,8 +56,6 @@ export const fetchByState = async (State) => {
 
          
          return {active, confirmed, recovered, deaths, cChanges, dChanges, rChanges};
-         
-  
      }
        return statewise.map((State)=>({
            State:State.state,

@@ -9,3 +9,16 @@ body {
     align-items: center;
     flex-direction: column;
     }
+
+ .imageContainer{
+     display: flex;
+     justify-content: center;
+    
+    }
+    .imageContainer img{
+      margin: 5%;
+    }
+.image{
+    width: 100px;
+}    
+
