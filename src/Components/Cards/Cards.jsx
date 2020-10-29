@@ -19,6 +19,7 @@ function Cards({data:{active, confirmed, recovered, deaths, aChanges, cChanges, 
                <CountUp start = {0} end = {active} duration = {2.5} separator = "," />
                </Typography>
              <Typography  gutterBottom>{aChanges>0 && "+" }{aChanges}</Typography> 
+            
            </CardContent>
          </Grid>
          <Grid item component = {Card} xs = {12} md ={3} className = {cx(styles.card,styles.confirmed)}>
