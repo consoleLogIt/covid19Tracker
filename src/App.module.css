@@ -21,4 +21,15 @@ body {
 .image{
     width: 100px;
 }    
+.rotate{
+    animation: rotation 12s infinite linear;
+}
 
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
