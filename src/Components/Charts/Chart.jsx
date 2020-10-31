@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { fetchDailyData } from '../../api';
-// import {Line, Bar} from 'react-chartjs-2';
 import { Line, Bar } from '@reactchartjs/react-chart.js'
 
 import styles from './Chart.module.css';
@@ -18,45 +17,12 @@ function Chart({ data: { confirmed, active, recovered, deaths }, State }) {
     }, []);
 
 
-    // const lineChart = (
-    //     dailyData.length
-    //     ?
-    //     (<Line 
-    //     data = {{
-    //         labels:dailyData.map(({date})=>date),
-    //         datasets: [{
-    //              data:dailyData.map(({confirmed})=>confirmed),
-    //              label:'confirmed',
-    //              borderColor:'#333fff',
-    //              fill:true,
-    //         },{
-    //             data:dailyData.map(({recovored})=>recovored),
-    //              label:'recovored',
-    //              borderColor:'green',
-    //              fill:true,
-    //         },{
-    //             data:dailyData.map(({deaths})=>deaths),
-    //              label:'deceased',
-    //              borderColor:'red',
-    //              backgroundColor:'rgba(255,0,0,0.5)',
-    //              fill:true,
-    //         }],
-
-    //     }}
-    //     />):null
-
-    // );
-
-
-
     const xlabel = dailyData.map(({ date }) => date.substring(0, 6));
     const lineChart = (
-
         dailyData.length
             ?
             (<Line
                 data={{
-                    // lables:dailyData.map(({date})=> date.substring(0,3)),
                     labels: xlabel,
                     datasets: [{
                         label: 'confirmed',
@@ -120,7 +86,7 @@ function Chart({ data: { confirmed, active, recovered, deaths }, State }) {
 
     return (
         <div className={styles.container}>
-            {State && State != "Total" ? barChart : lineChart}
+            {State  ? barChart : lineChart}
         </div>
     );
 }

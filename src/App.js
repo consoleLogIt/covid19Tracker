@@ -7,9 +7,6 @@ import cx from 'classnames';
 
 import Coronalogo from './images/covid19.svg'
 
-
-
-
 import styles from './App.module.css'
 
 class App extends Component {
@@ -18,19 +15,19 @@ class App extends Component {
         State: "",
     }
 
-    async componentDidMount() {
+ async componentDidMount() {
         const fetchedData = await fetchData();
         this.setState({
             data: fetchedData
         })
     }
 
-    handleStateChange = async (State) => {
+ handleStateChange = async (State) => {
 
         const data = await fetchByState(State)
         this.setState({
             data,
-            State: (State == "Total" ? null : State),
+            State: (State === "Total" ? null : State),
         })
 
     }
@@ -40,9 +37,7 @@ class App extends Component {
         const { data, State } = this.state;
         return (
             <div className={styles.container} >
-                <div className={styles.imageContainer}>
-                    <img className={cx(styles.image, styles.rotate)} src={Coronalogo} alt="CoronaLogo" />
-                </div>
+                <img className={cx(styles.image, styles.rotate)} src={Coronalogo} alt="CoronaLogo" />
                 <IndiaTextLogo text={State} />
                 <Cards data={data} />
                 <StatePicker handleStateChange={this.handleStateChange} />

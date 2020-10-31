@@ -11,15 +11,16 @@ function Cards({ data: { active, confirmed, recovered, deaths, aChanges, cChange
   }
   return (
     <div className={styles.container}>
-      <Grid container spacing={3} justify='space-evenly' wrap='nowrap' md='auto'>
+      <Grid className = {styles.gridwrap} container spacing={3} justify='space-evenly'  md='auto'>
         <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.active)}>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>Active</Typography>
             <Typography variant="h5">
               <CountUp start={0} end={active} duration={2.5} separator="," />
             </Typography>
-            <Typography gutterBottom>{aChanges > 0 && "+"}{aChanges}</Typography>
-
+            <Typography gutterBottom>{aChanges > 0 && "+"}
+            <CountUp start={0} end={aChanges} duration={2.5} separator="," />
+            </Typography>
           </CardContent>
         </Grid>
         <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.confirmed)}>
@@ -28,7 +29,9 @@ function Cards({ data: { active, confirmed, recovered, deaths, aChanges, cChange
             <Typography variant="h5">
               <CountUp start={0} end={confirmed} duration={2.5} separator="," />
             </Typography>
-            <Typography gutterBottom>{cChanges > 0 && "+"}{cChanges}</Typography>
+            <Typography gutterBottom>{cChanges > 0 && "+"}
+            <CountUp start={0} end={cChanges} duration={2.5} separator="," />
+            </Typography>
           </CardContent>
         </Grid>
         <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.recovered)}>
@@ -37,7 +40,9 @@ function Cards({ data: { active, confirmed, recovered, deaths, aChanges, cChange
             <Typography variant="h5">
               <CountUp start={0} end={recovered} duration={2.5} separator="," />
             </Typography>
-            <Typography gutterBottom>{rChanges > 0 && "+"}{rChanges}</Typography>
+            <Typography gutterBottom>{rChanges > 0 && "+"}
+            <CountUp start={0} end={rChanges} duration={2.5} separator="," />
+            </Typography>
           </CardContent>
         </Grid>
         <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.deceased)}>
@@ -46,7 +51,9 @@ function Cards({ data: { active, confirmed, recovered, deaths, aChanges, cChange
             <Typography variant="h5">
               <CountUp start={0} end={deaths} duration={2.5} separator="," />
             </Typography>
-            <Typography gutterBottom>{dChanges > 0 && "+"}{dChanges}</Typography>
+            <Typography gutterBottom>{dChanges > 0 && "+"}
+            <CountUp start={0} end={dChanges} duration={2.5} separator="," />
+            </Typography>
           </CardContent>
         </Grid>
       </Grid>

@@ -25,6 +25,7 @@ body {
     animation: rotation 12s infinite linear;
 }
 
+
 @keyframes rotation {
     from {
       transform: rotate(0deg);

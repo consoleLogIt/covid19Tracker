@@ -1,91 +1,79 @@
 import axios from 'axios';
 
 
-const url  = "https://api.covidindiatracker.com/"
+// fetch data for loading page
+export const fetchData = async () => {
+  try {
 
- export const fetchData = async () => {
-    try{
-       
-       const {data:{active, confirmed, recovered, deaths,
-         aChanges ,cChanges , dChanges, rChanges}} = await axios.get(`${url}total.json`);
+    const { data: { active, confirmed, recovered, deaths,aChanges, cChanges, dChanges, rChanges } } = await axios.get(`https://api.covidindiatracker.com/total.json`);
 
-    return {active,confirmed,recovered,deaths, aChanges, cChanges, dChanges, rChanges}; 
-       
+    return { active, confirmed, recovered, deaths, aChanges, cChanges, dChanges, rChanges };
 
-    }
-    catch(error){
-        console.log(error);
-    }
+  }
+  catch (error) {
+    console.log(error);
+  }
 }
 
+// fetch data for line chart
 export const fetchDailyData = async () => {
-    try{
-        const {data:{cases_time_series}} =  await axios.get(`https://api.covid19india.org/data.json`);
-        const modifiedData = cases_time_series.map((dailyData)=>({
-        confirmed:dailyData.dailyconfirmed,
-        deaths:dailyData.dailydeceased,
-        recovored:dailyData.dailyrecovered,
-       date: dailyData.date
-      }))
+  try {
 
-      return modifiedData;
+    const { data: { cases_time_series } } = await axios.get(url);
 
-    }
-    catch(error){
-        console.log(error);
-    }
+    const modifiedData = cases_time_series.map((dailyData) => ({
+      confirmed: dailyData.dailyconfirmed,
+      deaths: dailyData.dailydeceased,
+      recovored: dailyData.dailyrecovered,
+      date: dailyData.date
+    }))
+
+    return modifiedData;
+
+  }
+  catch (error) {
+    console.log(error);
+  }
 }
 
+
+const url = `https://api.covid19india.org/data.json`;
+
+
+//fetch data to populate the State list if State arguments is undefined
+//fetch data for particular state if State is passed as argument
 export const fetchByState = async (State) => {
 
-  
-    try{
-       const {data:{statewise}} = await axios.get(`https://api.covid19india.org/data.json`);
+  try {
+    const { data: { statewise } } = await axios.get(url);
 
-     if(State){
-         if(State=="Total"){
-           return await fetchData();
-            
-         }
-        console.log("inside fetchByStateApi",State)
-         const modifieddata = statewise.filter((state)=>{return state.state===State})
-         
-       const   {active, confirmed, recovered, deaths,
-         deltaconfirmed: cChanges,deltadeaths: dChanges,deltarecovered: rChanges} = modifieddata[0];
+    // if State is "Total" (using different api url for total(India) data)
+    if (State) {
+      if (State === "Total") {
+        return await fetchData();
+      }
+      //filter out the data for the particular state
+      const modifieddata = statewise.filter((state) => { return state.state === State })
 
+      const { active, confirmed, recovered, deaths,deltaconfirmed: cChanges, deltadeaths: dChanges, deltarecovered: rChanges } = modifieddata[0];
 
-         
-         return {active, confirmed, recovered, deaths, cChanges, dChanges, rChanges};
-     }
-       return statewise.map((State)=>({
-           State:State.state,
-           statecode:State.statecode,
-       }));
-
+      return { active, confirmed, recovered, deaths, cChanges, dChanges, rChanges };
     }
-    catch(error){
-        console.log(error);
-    }
+
+    return statewise.map((State) => ({
+      State: State.state,
+      statecode: State.statecode,
+    }));
+
+  }
+  catch (error) {
+    console.log(error);
+  }
 }
 
 
-//temp fun
-// export const fetchStateStatus = async (statecode) => {
-//    try{
-//     //    const {data:{[statecode]:status}} = await axios.get('https://api.covid19india.org/v4/data.json')
-//     const response = await axios.get('https://api.covid19india.org/v4/data.json')
 
-     
-//      console.log(response.data  )
-      
-//     //  return {active,confirmed,recovered,deaths, aChanges, cChanges, dChanges, rChanges}; 
 
-//    }
-//    catch(error){
-//        console.log(error);
-
-//    }
-// }
 
 
 
